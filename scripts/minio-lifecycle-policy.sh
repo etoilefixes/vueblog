@@ -101,6 +101,10 @@ run_mc() {
   "
 }
 
+ensure_bucket_exists() {
+  run_mc "mc mb --ignore-existing \"$TARGET\" >/dev/null"
+}
+
 read_lifecycle_rules() {
   local error_file
   error_file="$(mktemp)"
@@ -211,6 +215,8 @@ NODE
 }
 
 apply_rules() {
+  ensure_bucket_exists
+
   local current_rules
   current_rules="$(read_lifecycle_rules)"
   local merged_rules
