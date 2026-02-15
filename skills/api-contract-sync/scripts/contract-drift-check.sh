@@ -7,7 +7,11 @@ shift || true
 if [[ $# -gt 0 ]]; then
   FRONTEND_FILES=("$@")
 else
-  FRONTEND_FILES=("src/services/blog-api.ts" "src/services/admin-api.ts")
+  if [[ -f "src/services/blog-api/core.ts" && -f "src/services/admin-api/core.ts" ]]; then
+    FRONTEND_FILES=("src/services/blog-api/core.ts" "src/services/admin-api/core.ts")
+  else
+    FRONTEND_FILES=("src/services/blog-api.ts" "src/services/admin-api.ts")
+  fi
 fi
 
 if [[ ! -f "$CONTRACT_FILE" ]]; then
@@ -60,7 +64,7 @@ NODE
 {
   for file in "${FRONTEND_FILES[@]}"; do
     case "$file" in
-      *admin-api.ts) extract_frontend_paths "$file" "/admin" ;;
+      *admin-api.ts|*admin-api/core.ts) extract_frontend_paths "$file" "/admin" ;;
       *) extract_frontend_paths "$file" "" ;;
     esac
   done
