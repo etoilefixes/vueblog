@@ -13,6 +13,10 @@ dist
 dist-ssr
 coverage
 *.local
+.env
+.env.*
+!.env.example
+!backend/.env.example
 
 # Editor directories and files
 .vscode/*
@@ -37,3 +41,11 @@ __screenshots__/
 
 # Vite
 *.timestamp-*-*.mjs
+
+# Yarn Berry local artifacts
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
