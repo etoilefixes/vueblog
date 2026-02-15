@@ -1,0 +1,5 @@
+interface:
+  display_name: "Backend Optimizer"
+  short_description: "Optimize backend latency, throughput, and reliability"
+  default_prompt: "Use $backend-optimizer to audit this service and apply measurable backend performance optimizations."
+

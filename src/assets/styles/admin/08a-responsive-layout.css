@@ -1,0 +1,614 @@
+/* ============================================
+   Admin Responsive Layout Styles
+   ============================================ */
+
+/* ---------- CSS Custom Properties for Responsive ---------- */
+:root {
+  /* Touch target sizes - WCAG 2.1 recommends 44px minimum */
+  --touch-target-min: 44px;
+  --touch-target-comfortable: 48px;
+
+  /* Spacing for mobile */
+  --mobile-gutter: 12px;
+  --mobile-card-padding: 14px;
+
+  /* Safe area fallbacks */
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-left: env(safe-area-inset-left, 0px);
+  --safe-area-right: env(safe-area-inset-right, 0px);
+
+  /* Keyboard height tracking (updated via JS) */
+  --keyboard-height: 0px;
+}
+
+/* ---------- Safe Area Support ---------- */
+@supports (padding: max(0px)) {
+  .admin-shell__main {
+    padding-left: max(var(--mobile-gutter), var(--safe-area-left));
+    padding-right: max(var(--mobile-gutter), var(--safe-area-right));
+  }
+
+  .admin-shell__topbar {
+    padding-left: max(var(--space-md), var(--safe-area-left));
+    padding-right: max(var(--space-md), var(--safe-area-right));
+  }
+}
+
+/* ---------- Viewport Height Fix for Mobile Browsers ---------- */
+@supports (height: 100dvh) {
+  .admin-shell,
+  .admin-shell__main-wrap,
+  .admin-editor-panel,
+  .admin-dialog {
+    height: 100dvh;
+    min-height: 100dvh;
+  }
+}
+
+/* Fallback for browsers without dvh support */
+@supports not (height: 100dvh) {
+  .admin-shell,
+  .admin-shell__main-wrap,
+  .admin-editor-panel {
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* ---------- Mobile-First Base Improvements ---------- */
+
+/* Ensure all interactive elements meet touch target requirements */
+.admin-action-btn,
+.admin-btn,
+.admin-select,
+.admin-input,
+.admin-input-wrap {
+  min-height: var(--touch-target-min);
+}
+
+/* Improve button touch areas */
+.admin-action-btn,
+.admin-btn {
+  padding: 0 var(--space-md);
+  font-size: 0.88rem;
+  gap: var(--space-sm);
+}
+
+/* Icon buttons need explicit sizing */
+.admin-shell__mobile-trigger,
+.admin-shell__mobile-close,
+.admin-dialog__close {
+  min-width: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+}
+
+/* ---------- Mobile Toolbar Optimization ---------- */
+@media (max-width: 639px) {
+  /* Stack toolbar items vertically on small screens */
+  .admin-content-toolbar,
+  .admin-comments-toolbar,
+  .admin-media-toolbar,
+  .admin-logs-toolbar,
+  .admin-access-toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  
+  /* Full-width inputs and selects on mobile */
+  .admin-content-toolbar .admin-input-wrap,
+  .admin-content-toolbar .admin-select,
+  .admin-comments-toolbar .admin-input-wrap,
+  .admin-comments-toolbar .admin-select,
+  .admin-media-toolbar .admin-input-wrap,
+  .admin-media-toolbar .admin-select,
+  .admin-logs-toolbar .admin-input-wrap,
+  .admin-logs-toolbar .admin-select {
+    width: 100%;
+  }
+  
+  /* Primary action button full width */
+  .admin-content-toolbar .admin-action-btn--strong,
+  .admin-comments-toolbar .admin-action-btn--strong {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ---------- Mobile Metric Cards Optimization ---------- */
+@media (max-width: 479px) {
+  /* Single column metrics on very small screens */
+  .admin-metric-grid,
+  .admin-content-metrics,
+  .admin-comments-metrics,
+  .admin-theme-metrics,
+  .admin-logs-metrics,
+  .admin-publish-metrics,
+  .admin-media-metrics,
+  .admin-access-metrics {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+  
+  /* Compact metric cards */
+  .admin-metric-card,
+  .admin-content-metric,
+  .admin-comments-metric,
+  .admin-theme-metric,
+  .admin-logs-metric,
+  .admin-publish-metric,
+  .admin-media-metric,
+  .admin-access-metric {
+    padding: var(--mobile-card-padding);
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-md);
+  }
+  
+  .admin-metric-card__icon-wrap {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+  
+  .admin-metric-card__content {
+    text-align: left;
+    flex: 1;
+  }
+  
+  .admin-metric-card__value {
+    font-size: 1.4rem;
+  }
+  
+  .admin-metric-card__label {
+    font-size: 0.8rem;
+  }
+  
+  .admin-metric-card__trend {
+    align-self: center;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 639px) {
+  /* Two column metrics on small-medium screens */
+  .admin-metric-grid,
+  .admin-content-metrics,
+  .admin-comments-metrics,
+  .admin-theme-metrics,
+  .admin-logs-metrics,
+  .admin-publish-metrics,
+  .admin-media-metrics,
+  .admin-access-metrics {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+  }
+  
+  .admin-metric-card,
+  .admin-content-metric,
+  .admin-comments-metric {
+    padding: var(--mobile-card-padding);
+  }
+}
+
+/* ---------- Mobile Card List Optimization ---------- */
+@media (max-width: 767px) {
+  /* Single column card lists */
+  .admin-content-list,
+  .admin-comments-list,
+  .admin-logs-list,
+  .admin-media-list,
+  .admin-theme-revision-list,
+  .admin-publish-history-list {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  
+  /* Optimize card internal layout */
+  .admin-content-card,
+  .admin-comments-card,
+  .admin-log-card,
+  .admin-media-card {
+    padding: var(--mobile-card-padding);
+  }
+  
+  /* Card header optimization */
+  .admin-content-card__head,
+  .admin-comments-card__head {
+    grid-template-columns: auto 1fr auto;
+    gap: var(--space-sm);
+  }
+  
+  .admin-content-card__head h3,
+  .admin-comments-card__head h3 {
+    font-size: 0.9rem;
+    line-height: 1.3;
+  }
+  
+  .admin-content-card__head p,
+  .admin-comments-card__head p {
+    font-size: 0.78rem;
+    margin-top: 2px;
+  }
+  
+  /* Card actions - horizontal scroll on overflow */
+  .admin-content-card__actions,
+  .admin-comments-card__actions,
+  .admin-media-actions {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: var(--space-sm);
+    padding-bottom: 2px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  
+  .admin-content-card__actions::-webkit-scrollbar,
+  .admin-comments-card__actions::-webkit-scrollbar,
+  .admin-media-actions::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .admin-content-card__actions .admin-action-btn,
+  .admin-comments-card__actions .admin-action-btn,
+  .admin-media-actions .admin-action-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  
+  /* Meta tags wrap nicely */
+  .admin-content-card__meta,
+  .admin-comments-card__meta,
+  .admin-log-meta,
+  .admin-media-meta {
+    gap: 6px;
+  }
+  
+  .admin-content-card__meta li,
+  .admin-comments-card__meta li,
+  .admin-log-meta li,
+  .admin-media-meta li {
+    font-size: 0.72rem;
+    padding: 2px 6px;
+  }
+}
+
+/* ---------- Fixed Bottom Action Bar ---------- */
+.admin-mobile-actionbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-sticky);
+  display: none;
+  padding: var(--space-md);
+  padding-bottom: calc(var(--space-md) + var(--safe-area-bottom));
+  background: linear-gradient(180deg, rgba(245, 243, 255, 0.85), rgba(245, 243, 255, 0.98));
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--admin-border);
+  box-shadow: 0 -4px 20px rgba(31, 26, 74, 0.08);
+}
+
+@media (max-width: 1023px) {
+  .admin-mobile-actionbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--space-sm);
+  }
+  
+  .admin-mobile-actionbar .admin-btn,
+  .admin-mobile-actionbar .admin-action-btn {
+    min-height: var(--touch-target-comfortable);
+    flex: 1;
+    max-width: 50%;
+    justify-content: center;
+  }
+  
+  .admin-mobile-actionbar .admin-btn--primary,
+  .admin-mobile-actionbar .admin-action-btn--strong {
+    flex: 2;
+    max-width: 100%;
+  }
+  
+  /* Add bottom padding to main content to prevent overlap */
+  .admin-shell__main {
+    padding-bottom: calc(80px + var(--safe-area-bottom));
+  }
+}
+
+/* ---------- Selection Bar Optimization ---------- */
+@media (max-width: 767px) {
+  .admin-content-selection,
+  .admin-comments-selection {
+    position: sticky;
+    top: 68px;
+    z-index: calc(var(--z-sticky) - 1);
+    margin: 0 calc(-1 * var(--mobile-gutter));
+    padding: var(--space-sm) var(--mobile-gutter);
+    border-radius: 0;
+    background: linear-gradient(180deg, rgba(247, 252, 255, 0.95), rgba(247, 252, 255, 0.9));
+    backdrop-filter: blur(8px);
+  }
+  
+  .admin-content-bulk,
+  .admin-comments-bulk {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+  
+  .admin-content-bulk .admin-action-btn,
+  .admin-comments-bulk .admin-action-btn {
+    flex: 1;
+    min-width: calc(50% - var(--space-sm));
+    justify-content: center;
+  }
+}
+
+/* ---------- Dialog Mobile Optimization ---------- */
+@media (max-width: 639px) {
+  .admin-dialog-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+  
+  .admin-dialog {
+    max-width: 100%;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    max-height: 90vh;
+    animation: dialog-slide-up 300ms ease;
+  }
+  
+  @keyframes dialog-slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .admin-dialog__header {
+    padding: var(--space-lg) var(--space-lg) var(--space-md);
+    position: sticky;
+    top: 0;
+    background: inherit;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  }
+  
+  .admin-dialog__body {
+    padding: 0 var(--space-lg) var(--space-md);
+    max-height: calc(90vh - 180px);
+    overflow-y: auto;
+  }
+  
+  .admin-dialog__footer {
+    position: sticky;
+    bottom: 0;
+    padding: var(--space-md) var(--space-lg);
+    padding-bottom: calc(var(--space-lg) + var(--safe-area-bottom));
+    flex-direction: column;
+    gap: var(--space-sm);
+    background: linear-gradient(180deg, rgba(245, 243, 255, 0.6), rgba(245, 243, 255, 0.95));
+  }
+  
+  .admin-dialog__footer .admin-btn {
+    width: 100%;
+    min-height: var(--touch-target-comfortable);
+    justify-content: center;
+  }
+  
+  /* Reorder buttons - primary action first visually */
+  .admin-dialog__footer {
+    flex-direction: column-reverse;
+  }
+}
+
+/* ---------- Editor Panel Mobile Optimization ---------- */
+@media (max-width: 1023px) {
+  .admin-editor-panel {
+    width: 100vw;
+    height: 100dvh;
+    border-left: none;
+    border-radius: 0;
+    padding: var(--mobile-gutter);
+    padding-top: calc(var(--mobile-gutter) + var(--safe-area-top));
+  }
+  
+  .admin-editor-panel__head {
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--admin-border);
+    margin-bottom: var(--space-sm);
+  }
+  
+  .admin-editor-panel__head h3 {
+    font-size: 0.95rem;
+  }
+  
+  .admin-editor-panel__switch {
+    margin-top: var(--space-sm);
+  }
+  
+  .admin-editor-panel__switch button {
+    min-height: 36px;
+    padding: 0 var(--space-md);
+  }
+  
+  .admin-editor-form {
+    padding-bottom: calc(80px + var(--safe-area-bottom));
+  }
+  
+  .admin-editor-panel__foot {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-md);
+    padding-bottom: calc(var(--space-md) + var(--safe-area-bottom));
+    background: linear-gradient(180deg, rgba(245, 243, 255, 0.85), rgba(245, 243, 255, 0.98));
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--admin-border);
+    gap: var(--space-sm);
+  }
+  
+  .admin-editor-panel__foot .admin-action-btn {
+    flex: 1;
+    min-height: var(--touch-target-comfortable);
+    justify-content: center;
+  }
+  
+  .admin-editor-panel__foot .admin-action-btn--strong {
+    flex: 2;
+  }
+  
+  /* Editor mode switch */
+  .admin-editor-mode {
+    padding: var(--space-md);
+  }
+  
+  .admin-editor-mode__switch {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .admin-editor-mode__switch button {
+    flex: 1;
+    justify-content: center;
+  }
+  
+  /* Editor grid single column */
+  .admin-editor-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Section cards */
+  .admin-editor-section-card {
+    padding: var(--mobile-card-padding);
+  }
+  
+  .admin-editor-section-card header {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+  
+  /* Markdown editor */
+  .admin-editor-markdown textarea {
+    min-height: 200px;
+    font-size: 0.85rem;
+  }
+  
+  .admin-editor-markdown > header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-sm);
+  }
+  
+  .admin-editor-inline-actions {
+    flex-wrap: wrap;
+  }
+  
+  .admin-editor-inline-actions .admin-action-btn {
+    flex: 1;
+    min-width: calc(50% - var(--space-sm));
+    justify-content: center;
+  }
+}
+
+/* ---------- Form Input Mobile Optimization ---------- */
+@media (max-width: 767px) {
+  .admin-field input,
+  .admin-field textarea,
+  .admin-field select {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+  
+  .admin-field textarea {
+    min-height: 100px;
+  }
+  
+  .admin-field span {
+    font-size: 0.8rem;
+  }
+  
+  /* Two column fields become single column */
+  .admin-editor-grid,
+  .admin-media-form,
+  .admin-site-panel,
+  .admin-theme-token-grid,
+  .admin-access-perm-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Page Header Mobile Optimization ---------- */
+@media (max-width: 639px) {
+  .admin-page__head {
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+  }
+  
+  .admin-page__head--dashboard {
+    min-height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+  }
+  
+  .admin-page__head p {
+    font-size: 0.7rem;
+  }
+  
+  .admin-page__head h2 {
+    font-size: 1.25rem;
+  }
+  
+  .admin-page__head span {
+    font-size: 0.85rem;
+  }
+  
+  .admin-page__head-decoration {
+    display: none;
+  }
+  
+  /* Reduce page gap on mobile */
+  .admin-page {
+    gap: var(--space-md);
+  }
+  
+  .admin-shell__main {
+    padding: var(--mobile-gutter);
+  }
+}
+
+/* ---------- Topbar Mobile Optimization ---------- */
+@media (max-width: 767px) {
+  .admin-shell__topbar {
+    min-height: 56px;
+    padding: 0 var(--mobile-gutter);
+    gap: var(--space-sm);
+  }
+  
+  .admin-shell__topbar h1 {
+    font-size: 1rem;
+  }
+}
+
+/* ---------- Mobile Drawer Optimization ---------- */
+@media (max-width: 1023px) {
+  .admin-shell__mobile-drawer {
+    width: min(300px, 85vw);
+    padding: var(--space-md);
+    padding-top: calc(var(--space-md) + var(--safe-area-top));
+    padding-bottom: calc(var(--space-md) + var(--safe-area-bottom));
+  }
+  
+  .admin-shell__mobile-item {
+    min-height: var(--touch-target-comfortable);
+    padding: 0 var(--space-md);
+    font-size: 0.9rem;
+  }
+}

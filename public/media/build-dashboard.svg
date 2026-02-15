@@ -1,0 +1,17 @@
+<svg width="1200" height="680" viewBox="0 0 1200 680" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="680" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F6C90"/>
+      <stop offset="0.56" stop-color="#2D9EA0"/>
+      <stop offset="1" stop-color="#FF965E"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="680" rx="28" fill="url(#bg)"/>
+  <rect x="72" y="86" width="1056" height="508" rx="24" fill="rgba(255,255,255,0.13)" stroke="rgba(255,255,255,0.42)"/>
+  <rect x="122" y="156" width="472" height="168" rx="14" fill="rgba(8,33,54,0.36)"/>
+  <rect x="630" y="156" width="448" height="56" rx="10" fill="rgba(255,255,255,0.24)"/>
+  <rect x="630" y="232" width="448" height="56" rx="10" fill="rgba(255,255,255,0.18)"/>
+  <rect x="122" y="354" width="956" height="188" rx="18" fill="rgba(8,33,54,0.3)"/>
+  <path d="M168 486L272 448L356 464L462 386L548 402L628 346L716 370L810 312L896 328L986 272L1040 292" stroke="#D9F2FF" stroke-width="10" stroke-linecap="round"/>
+  <text x="124" y="130" fill="white" font-size="32" font-family="'Segoe UI', 'PingFang SC', sans-serif" font-weight="700">Build Pipeline Monitor</text>
+</svg>

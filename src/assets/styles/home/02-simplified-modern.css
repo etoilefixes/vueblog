@@ -1,0 +1,118 @@
+/* Simplified modern design */
+.home-page {
+  gap: 24px;
+}
+
+.home-hero {
+  box-shadow: 0 8px 24px rgba(15, 143, 149, 0.2);
+}
+
+.post-card {
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.post-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(15, 143, 149, 0.15);
+}
+
+.post-card__badge {
+  box-shadow: none;
+}
+
+.post-card__tip {
+  border-color: rgba(15, 143, 149, 0.2);
+  background: rgba(15, 143, 149, 0.05);
+  box-shadow: none;
+}
+
+.post-card__quote {
+  border-left-color: rgba(15, 143, 149, 0.4);
+  background: #f8fafb;
+}
+
+.post-card__read {
+  box-shadow: none;
+}
+
+.post-card__read:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(15, 143, 149, 0.2);
+}
+
+.home-pagination__btn {
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.home-pagination__btn:hover:not(:disabled) {
+  box-shadow: none;
+}
+
+.home-pagination__btn--active {
+  box-shadow: none;
+}
+
+.profile-card,
+.profile-glance {
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  backdrop-filter: none;
+}
+
+.profile-card__avatar {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card__stat {
+  border-radius: 8px;
+  padding: 10px 8px;
+  border: 1px solid #f0f0f0;
+  background: #fafafa;
+  box-shadow: none;
+}
+
+.profile-card__social {
+  border-radius: 8px;
+  border: 1px solid #f0f0f0;
+  padding: 8px 10px;
+  background: #fafafa;
+  box-shadow: none;
+}
+
+.profile-card__social:hover {
+  border-color: rgba(15, 143, 149, 0.3);
+  background: rgba(15, 143, 149, 0.05);
+  box-shadow: none;
+  transform: none;
+}
+
+.profile-glance__tags span {
+  border: 1px solid rgba(15, 143, 149, 0.2);
+  background: rgba(15, 143, 149, 0.08);
+  box-shadow: none;
+}
+
+.home-footer {
+  width: min(920px, 100%);
+  margin: 4px auto 0;
+  border-radius: 12px;
+  border: 1px solid #e5e5e5;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 16px;
+}
+
+@media (max-width: 760px) {
+  .home-footer {
+    border-radius: 14px;
+    padding: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post-card::after {
+    transition: none;
+  }
+}

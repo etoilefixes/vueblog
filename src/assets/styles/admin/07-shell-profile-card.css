@@ -1,0 +1,175 @@
+.admin-shell__profile-float {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .admin-shell__profile-float {
+    display: block;
+    position: fixed;
+    left: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0));
+    width: 228px;
+    max-width: calc(100vw - 24px);
+    z-index: 36;
+    pointer-events: none;
+    transition: transform var(--transition-fast);
+  }
+
+  .admin-shell__profile-card {
+    pointer-events: auto;
+    border-radius: 14px;
+    border: 1px solid var(--admin-border);
+    background: linear-gradient(150deg, rgba(255, 255, 255, 0.92), rgba(236, 242, 255, 0.86));
+    box-shadow:
+      0 14px 24px rgba(31, 26, 74, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(var(--glass-blur));
+    padding: 10px;
+    display: grid;
+    gap: 10px;
+  }
+
+  .admin-shell__profile-head {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr) 30px 30px;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .admin-shell__profile-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 11px;
+    object-fit: cover;
+    border: 1px solid rgba(79, 70, 229, 0.16);
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .admin-shell__profile-meta {
+    min-width: 0;
+  }
+
+  .admin-shell__profile-meta strong,
+  .admin-shell__profile-meta span {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .admin-shell__profile-meta strong {
+    color: var(--admin-text-primary);
+    font-size: 0.86rem;
+    font-weight: 700;
+  }
+
+  .admin-shell__profile-meta span {
+    margin-top: 2px;
+    color: var(--admin-text-tertiary);
+    font-size: 0.72rem;
+  }
+
+  .admin-shell__profile-edit,
+  .admin-shell__logout {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--admin-border);
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: var(--shadow-sm);
+    color: var(--admin-text-tertiary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      border-color var(--transition-fast),
+      color var(--transition-fast),
+      background var(--transition-fast),
+      transform var(--transition-fast);
+  }
+
+  .admin-shell__profile-edit:hover {
+    border-color: var(--admin-border-strong);
+    color: var(--admin-primary);
+    background: rgba(99, 102, 241, 0.12);
+  }
+
+  .admin-shell__logout:hover {
+    border-color: var(--admin-border-strong);
+    color: var(--admin-danger);
+    background: var(--admin-danger-light);
+  }
+
+  .admin-shell__profile-edit:active,
+  .admin-shell__logout:active {
+    transform: translateY(1px);
+  }
+
+  .admin-shell__profile-form {
+    display: grid;
+    gap: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--admin-border);
+  }
+
+  .admin-shell__profile-field {
+    display: grid;
+    gap: 4px;
+  }
+
+  .admin-shell__profile-field span {
+    color: var(--admin-text-tertiary);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .admin-shell__profile-field input {
+    width: 100%;
+    min-height: 34px;
+    border-radius: 10px;
+    border: 1px solid var(--admin-border);
+    background: rgba(255, 255, 255, 0.86);
+    color: var(--admin-text-primary);
+    font-size: 0.78rem;
+    padding: 0 10px;
+    outline: none;
+    transition:
+      border-color var(--transition-fast),
+      box-shadow var(--transition-fast),
+      background var(--transition-fast);
+  }
+
+  .admin-shell__profile-field input:focus {
+    border-color: var(--admin-primary);
+    box-shadow: 0 0 0 3px var(--admin-focus-ring);
+    background: #ffffff;
+  }
+
+  .admin-shell__profile-feedback {
+    margin: 0;
+    border-radius: 10px;
+    padding: 6px 8px;
+    font-size: 0.74rem;
+    line-height: 1.4;
+  }
+
+  .admin-shell__profile-feedback--error {
+    color: var(--admin-danger);
+    background: var(--admin-danger-light);
+    border: 1px solid rgba(220, 38, 38, 0.24);
+  }
+
+  .admin-shell__profile-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .admin-shell__profile-actions .admin-action-btn {
+    min-height: 34px;
+    padding: 0 8px;
+    font-size: 0.78rem;
+  }
+
+}

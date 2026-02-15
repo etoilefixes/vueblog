@@ -1,0 +1,170 @@
+.admin-access-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.admin-access-metric {
+  border-radius: 12px;
+  border: 1px solid var(--glass-border-strong);
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.9), rgba(237, 247, 255, 0.75));
+  box-shadow: var(--glass-shadow-soft), var(--glass-highlight);
+  padding: 10px;
+  display: grid;
+  gap: 4px;
+  color: #4a6981;
+}
+
+.admin-access-metric strong {
+  color: #244660;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+}
+
+.admin-access-metric span {
+  font-size: 0.8rem;
+}
+
+.admin-access-layout {
+  display: grid;
+  gap: 10px;
+}
+
+.admin-access-panel {
+  border-radius: 14px;
+  border: 1px solid var(--glass-border-strong);
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.89), rgba(238, 247, 255, 0.77));
+  box-shadow: var(--glass-shadow-soft), var(--glass-highlight);
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.admin-access-panel > header {
+  display: grid;
+  gap: 3px;
+}
+
+.admin-access-panel > header h3 {
+  margin: 0;
+  color: #264861;
+  font-size: 0.95rem;
+}
+
+.admin-access-panel > header small {
+  color: #608097;
+  font-size: 0.77rem;
+}
+
+.admin-access-toolbar {
+  display: grid;
+  gap: 9px;
+}
+
+.admin-access-user-list {
+  display: grid;
+  gap: 9px;
+}
+
+.admin-access-user-card {
+  border-radius: 12px;
+  border: 1px solid rgba(67, 99, 125, 0.22);
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: var(--glass-shadow-soft), var(--glass-highlight-soft);
+  padding: 10px;
+}
+
+.admin-access-user-card--active {
+  border-color: rgba(40, 133, 149, 0.34);
+  box-shadow:
+    0 14px 24px rgba(24, 64, 95, 0.13),
+    inset 0 0 0 1px rgba(77, 174, 192, 0.16);
+}
+
+.admin-access-user-btn {
+  border: 0;
+  background: transparent;
+  width: 100%;
+  padding: 0;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 9px;
+  text-align: left;
+}
+
+.admin-access-user-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid rgba(67, 99, 125, 0.2);
+  background: rgba(246, 251, 255, 0.84);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #4b6b82;
+}
+
+.admin-access-user-main {
+  display: grid;
+  gap: 2px;
+}
+
+.admin-access-user-main strong {
+  color: #294a63;
+  font-size: 0.84rem;
+}
+
+.admin-access-user-main small {
+  color: #5d7890;
+  font-size: 0.74rem;
+}
+
+.admin-access-user-state {
+  border-radius: 999px;
+  border: 1px solid rgba(45, 138, 145, 0.28);
+  background: rgba(229, 248, 246, 0.84);
+  color: #1f6471;
+  font-size: 0.72rem;
+  padding: 3px 8px;
+}
+
+.admin-access-user-state--disabled {
+  border-color: rgba(169, 85, 106, 0.3);
+  background: rgba(255, 238, 243, 0.84);
+  color: #98475f;
+}
+
+.admin-access-group {
+  display: grid;
+  gap: 8px;
+}
+
+.admin-access-group h4 {
+  margin: 0;
+  color: #2d4e67;
+  font-size: 0.87rem;
+}
+
+.admin-access-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.admin-access-perm-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.admin-access-perm-item {
+  border-radius: 10px;
+  border: 1px solid rgba(67, 99, 125, 0.2);
+  background: rgba(247, 252, 255, 0.84);
+  padding: 7px 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #4d6d84;
+  font-size: 0.8rem;
+}

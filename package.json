@@ -1,0 +1,51 @@
+{
+  "name": "vue-blog-single-store",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "run-p type-check \"build-only {@}\" --",
+    "preview": "vite preview",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --build",
+    "quality-gate": "./scripts/run-quality-gate.sh",
+    "publish:preflight": "bash ./scripts/publish-preflight-check.sh .",
+    "minio:lifecycle:apply": "bash ./scripts/minio-lifecycle-policy.sh --apply",
+    "minio:lifecycle:verify": "bash ./scripts/minio-lifecycle-policy.sh --verify",
+    "repo:required-checks": "bash ./scripts/apply-required-checks.sh",
+    "security-regression": "bash ./scripts/security-regression.sh",
+    "perf-smoke": "bash ./scripts/perf-smoke.sh"
+  },
+  "dependencies": {
+    "dompurify": "^3.3.1",
+    "katex": "^0.16.28",
+    "lucide-vue-next": "^0.563.0",
+    "markdown-it": "^14.1.1",
+    "markdown-it-anchor": "^9.2.0",
+    "markdown-it-emoji": "^3.0.0",
+    "markdown-it-footnote": "^4.0.0",
+    "markdown-it-katex": "^2.0.3",
+    "markdown-it-task-lists": "^2.1.1",
+    "markdown-it-toc-done-right": "^4.2.0",
+    "pinia": "^3.0.4",
+    "vue": "^3.5.27",
+    "vue-router": "^5.0.1"
+  },
+  "devDependencies": {
+    "@tsconfig/node24": "^24.0.4",
+    "@types/markdown-it": "^14",
+    "@types/markdown-it-emoji": "^3",
+    "@types/node": "^24.10.9",
+    "@vitejs/plugin-vue": "^6.0.3",
+    "@vue/tsconfig": "^0.8.1",
+    "npm-run-all2": "^8.0.4",
+    "typescript": "~5.9.3",
+    "vite": "^7.3.1",
+    "vite-plugin-vue-devtools": "^8.0.5",
+    "vue-tsc": "^3.2.4"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  }
+}

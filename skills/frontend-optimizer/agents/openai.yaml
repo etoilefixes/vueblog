@@ -1,0 +1,5 @@
+interface:
+  display_name: "Frontend Optimizer"
+  short_description: "Optimize frontend performance, UX, and maintainability"
+  default_prompt: "Use $frontend-optimizer to audit and optimize this frontend app with measurable performance gains."
+

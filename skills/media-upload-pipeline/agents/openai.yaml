@@ -1,0 +1,4 @@
+interface:
+  display_name: "Media Upload Pipeline"
+  short_description: "Design safe media upload, storage, and cleanup workflows"
+  default_prompt: "Use $media-upload-pipeline to implement secure uploads, metadata persistence, and cleanup."

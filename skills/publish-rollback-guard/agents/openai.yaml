@@ -1,0 +1,4 @@
+interface:
+  display_name: "Publish Rollback Guard"
+  short_description: "Protect releases with preflight checks and rollback safety"
+  default_prompt: "Use $publish-rollback-guard to run pre-publish checks and rollback readiness validation."

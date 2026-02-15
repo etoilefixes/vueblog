@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+/* ============================================
+   Admin CSS Variables - Design Tokens
+   ============================================ */
+
+:root {
+  /* Colors - Primary Palette */
+  --admin-primary: #6366f1;
+  --admin-primary-dark: #4f46e5;
+  --admin-primary-light: #eef2ff;
+  --admin-secondary: #818cf8;
+  --admin-cta: #10b981;
+  
+  /* Colors - Semantic */
+  --admin-success: #059669;
+  --admin-success-light: #ecfdf5;
+  --admin-warning: #d97706;
+  --admin-warning-light: #fff7ed;
+  --admin-danger: #dc2626;
+  --admin-danger-light: #fef2f2;
+  --admin-info: #4f46e5;
+  --admin-info-light: #eef2ff;
+  
+  /* Colors - Neutral */
+  --admin-bg: #f5f3ff;
+  --admin-surface: rgba(255, 255, 255, 0.78);
+  --admin-surface-solid: #ffffff;
+  --admin-surface-elevated: rgba(255, 255, 255, 0.86);
+  --admin-border: rgba(79, 70, 229, 0.14);
+  --admin-border-strong: rgba(79, 70, 229, 0.26);
+  
+  /* Text Colors */
+  --admin-text-primary: #1e1b4b;
+  --admin-text-secondary: #4338ca;
+  --admin-text-tertiary: #6d67b1;
+  --admin-text-muted: #8f8aa9;
+  
+  /* Spacing - Modular Scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* Touch Target Sizes */
+  --touch-target-min: 44px;
+  --touch-target-comfortable: 48px;
+  
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(30, 27, 75, 0.05);
+  --shadow-md: 0 10px 20px rgba(79, 70, 229, 0.12);
+  --shadow-lg: 0 18px 34px rgba(79, 70, 229, 0.16);
+  --shadow-xl: 0 24px 52px rgba(31, 26, 74, 0.26);
+  
+  /* Glass Effect */
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.58);
+  --glass-blur: 14px;
+  --admin-focus-ring: rgba(99, 102, 241, 0.2);
+  --admin-font-base: 'Plus Jakarta Sans', 'Sora', 'Noto Sans SC', sans-serif;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 350ms ease;
+  
+  /* Z-index Scale */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 300;
+  --z-popover: 400;
+  --z-tooltip: 500;
+}

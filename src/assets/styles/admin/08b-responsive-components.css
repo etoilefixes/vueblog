@@ -1,0 +1,269 @@
+/* ============================================
+   Admin Responsive Components Styles
+   ============================================ */
+
+/* ---------- Tag Manager Mobile Optimization ---------- */
+@media (max-width: 639px) {
+  .admin-tag-manager {
+    padding: var(--mobile-card-padding);
+  }
+  
+  .admin-tag-manager__actions {
+    grid-template-columns: 1fr;
+  }
+  
+  .admin-tag-manager__list li {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+  
+  .admin-tag-manager__list li > div {
+    width: 100%;
+    display: flex;
+    gap: var(--space-sm);
+  }
+}
+
+/* ---------- Media Picker Mobile Optimization ---------- */
+@media (max-width: 767px) {
+  .admin-media-picker {
+    width: 100%;
+    max-height: 100dvh;
+    border-radius: 0;
+    padding: var(--mobile-gutter);
+    padding-top: calc(var(--mobile-gutter) + var(--safe-area-top));
+  }
+  
+  .admin-media-picker__list li {
+    grid-template-columns: 56px 1fr auto;
+    padding: var(--space-sm);
+  }
+  
+  .admin-media-picker__thumb {
+    width: 56px;
+    height: 44px;
+  }
+  
+  .admin-media-picker__meta strong {
+    font-size: 0.8rem;
+  }
+  
+  .admin-media-picker__meta span {
+    font-size: 0.72rem;
+  }
+}
+
+/* ---------- Log Detail Panel Mobile Optimization ---------- */
+@media (max-width: 767px) {
+  .admin-log-detail-panel {
+    width: 100vw;
+    border-left: none;
+    padding: var(--mobile-gutter);
+    padding-top: calc(var(--mobile-gutter) + var(--safe-area-top));
+  }
+}
+
+/* ---------- Pagination Mobile Optimization ---------- */
+@media (max-width: 639px) {
+  .admin-logs-pagination {
+    padding: var(--space-md);
+  }
+  
+  .admin-logs-pagination > div {
+    justify-content: center;
+  }
+  
+  .admin-page-num-btn {
+    min-width: var(--touch-target-min);
+    min-height: var(--touch-target-min);
+  }
+}
+
+/* ============================================
+   PC / Large Screen Optimization
+   ============================================ */
+
+/* ---------- Large Screen Layout Improvements ---------- */
+@media (min-width: 1280px) {
+  .admin-shell__main {
+    padding: var(--space-2xl) var(--space-xl);
+  }
+  
+  .admin-page {
+    gap: var(--space-2xl);
+    max-width: 1800px;
+  }
+  
+  /* Three column metric grid on large screens */
+  .admin-metric-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  /* Improved insight grid */
+  .admin-insight-grid {
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: var(--space-xl);
+  }
+  
+  /* Better card list layout */
+  .admin-content-list,
+  .admin-comments-list,
+  .admin-logs-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+  
+  /* Toolbar inline layout */
+  .admin-content-toolbar,
+  .admin-comments-toolbar {
+    grid-template-columns: minmax(280px, 1fr) repeat(2, minmax(0, 200px)) auto;
+    gap: var(--space-md);
+  }
+}
+
+@media (min-width: 1536px) {
+  .admin-page {
+    max-width: 2000px;
+  }
+  
+  /* Three column card list on extra large screens */
+  .admin-content-list,
+  .admin-comments-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  /* Wider editor panel */
+  .admin-editor-panel {
+    width: min(1100px, 100vw);
+  }
+  
+  /* Better split view */
+  .admin-editor-form--split {
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: var(--space-xl);
+  }
+}
+
+/* ---------- Sidebar Collapsed State Improvements ---------- */
+@media (min-width: 1024px) {
+  .admin-shell--sidebar-collapsed .admin-shell__menu-item {
+    position: relative;
+  }
+  
+  /* Tooltip on hover for collapsed sidebar */
+  .admin-shell--sidebar-collapsed .admin-shell__menu-item::after {
+    content: attr(data-label);
+    position: absolute;
+    left: calc(100% + 8px);
+    top: 50%;
+    transform: translateY(-50%);
+    padding: var(--space-xs) var(--space-sm);
+    background: var(--admin-text-primary);
+    color: white;
+    font-size: 0.75rem;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-fast), visibility var(--transition-fast);
+    pointer-events: none;
+    z-index: var(--z-tooltip);
+  }
+  
+  .admin-shell--sidebar-collapsed .admin-shell__menu-item:hover::after {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* ---------- Dashboard PC Optimization ---------- */
+@media (min-width: 1024px) {
+  .admin-page__head--dashboard {
+    min-height: 180px;
+    padding: var(--space-2xl) var(--space-xl);
+  }
+  
+  .admin-page__head h2 {
+    font-size: 2.2rem;
+  }
+  
+  .admin-page__head-decoration {
+    right: var(--space-xl);
+    width: 360px;
+    height: 200px;
+    opacity: 0.7;
+  }
+}
+
+/* ---------- System Panel PC Optimization ---------- */
+@media (min-width: 1024px) {
+  .admin-system-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .admin-system-item {
+    padding: var(--space-lg);
+  }
+}
+
+/* ============================================
+   Accessibility & Motion Preferences
+   ============================================ */
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode improvements */
+@media (prefers-contrast: high) {
+  .admin-card,
+  .admin-metric-card,
+  .admin-content-card,
+  .admin-comments-card,
+  .admin-panel {
+    border-width: 2px;
+  }
+  
+  .admin-btn,
+  .admin-action-btn {
+    border-width: 2px;
+  }
+}
+
+/* ---------- Focus Visible Improvements ---------- */
+.admin-btn:focus-visible,
+.admin-action-btn:focus-visible,
+.admin-input:focus-visible,
+.admin-select:focus-visible,
+.admin-textarea:focus-visible,
+.admin-shell__menu-item:focus-visible,
+.admin-shell__mobile-item:focus-visible {
+  outline: 2px solid var(--admin-primary);
+  outline-offset: 2px;
+}
+
+/* ---------- Print Styles ---------- */
+@media print {
+  .admin-shell__sidebar,
+  .admin-shell__topbar,
+  .admin-mobile-actionbar,
+  .admin-editor-panel__foot,
+  .admin-dialog-overlay {
+    display: none !important;
+  }
+  
+  .admin-shell__main {
+    padding: 0;
+  }
+  
+  .admin-page {
+    max-width: 100%;
+  }
+}

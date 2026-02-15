@@ -1,0 +1,41 @@
+{
+  "name": "blog-backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "type-check": "tsc --noEmit",
+    "media:gc": "tsx scripts/media-gc.ts --dry-run",
+    "runtime:consistency": "tsx scripts/runtime-consistency.ts",
+    "rollback:target": "tsx scripts/check-rollback-target.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate"
+  },
+  "dependencies": {
+    "@fastify/cors": "^10.0.2",
+    "@fastify/jwt": "^9.1.0",
+    "@fastify/multipart": "^9.2.1",
+    "@fastify/sensible": "^6.0.3",
+    "dotenv": "^17.3.1",
+    "drizzle-orm": "^0.44.7",
+    "fastify": "^5.6.2",
+    "ioredis": "^5.8.1",
+    "minio": "^8.0.6",
+    "pg": "^8.16.3",
+    "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "@types/pg": "^8.16.0",
+    "drizzle-kit": "^0.31.5",
+    "pino-pretty": "^13.1.3",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}

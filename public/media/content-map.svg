@@ -1,0 +1,24 @@
+<svg width="1200" height="680" viewBox="0 0 1200 680" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1200" y2="680" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#145F85"/>
+      <stop offset="0.56" stop-color="#23A38F"/>
+      <stop offset="1" stop-color="#FF9A63"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="680" rx="28" fill="url(#bg3)"/>
+  <rect x="76" y="92" width="1048" height="498" rx="24" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.4)"/>
+  <rect x="138" y="158" width="320" height="366" rx="18" fill="rgba(8,34,55,0.34)"/>
+  <rect x="494" y="158" width="248" height="94" rx="14" fill="rgba(255,255,255,0.22)"/>
+  <rect x="494" y="274" width="248" height="94" rx="14" fill="rgba(255,255,255,0.18)"/>
+  <rect x="494" y="390" width="248" height="94" rx="14" fill="rgba(255,255,255,0.22)"/>
+  <rect x="778" y="158" width="284" height="326" rx="18" fill="rgba(8,34,55,0.32)"/>
+  <path d="M452 206H494M452 322H494M452 438H494M742 206H778M742 322H778M742 438H778" stroke="#E6F7FF" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="452" cy="206" r="12" fill="#E6F7FF"/>
+  <circle cx="452" cy="322" r="12" fill="#E6F7FF"/>
+  <circle cx="452" cy="438" r="12" fill="#E6F7FF"/>
+  <circle cx="742" cy="206" r="12" fill="#E6F7FF"/>
+  <circle cx="742" cy="322" r="12" fill="#E6F7FF"/>
+  <circle cx="742" cy="438" r="12" fill="#E6F7FF"/>
+  <text x="138" y="136" fill="#FFFFFF" font-size="34" font-family="'Segoe UI', 'PingFang SC', sans-serif" font-weight="700">Content Structure Flow</text>
+</svg>

@@ -1,0 +1,57 @@
+.icon {
+  --icon-size: var(--icon-size-md);
+  --icon-stroke: var(--icon-stroke-base);
+  width: var(--icon-size);
+  height: var(--icon-size);
+  stroke-width: var(--icon-stroke);
+  flex-shrink: 0;
+  vector-effect: non-scaling-stroke;
+  transform-origin: center;
+  transition:
+    transform var(--icon-motion-duration) var(--icon-motion-easing),
+    color var(--icon-motion-duration) ease,
+    opacity var(--icon-motion-duration) ease,
+    filter var(--icon-motion-duration) ease;
+}
+
+.icon--xs {
+  --icon-size: var(--icon-size-xs);
+}
+
+.icon--sm {
+  --icon-size: var(--icon-size-sm);
+}
+
+.icon--md {
+  --icon-size: var(--icon-size-md);
+}
+
+.icon--lg {
+  --icon-size: var(--icon-size-lg);
+}
+
+.icon--stroke-soft {
+  --icon-stroke: var(--icon-stroke-soft);
+}
+
+.icon--stroke-base {
+  --icon-stroke: var(--icon-stroke-base);
+}
+
+.icon--stroke-strong {
+  --icon-stroke: var(--icon-stroke-strong);
+}
+
+.icon-host:hover .icon--react {
+  transform: translateY(-1px) scale(1.03);
+}
+
+.icon-host:active .icon--react {
+  transform: translateY(0) scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icon {
+    transition: none;
+  }
+}
