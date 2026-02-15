@@ -202,4 +202,4 @@ yarn quality-gate
 
 ## License
 
-[MIT](LICENSE)
+[Apache-2.0](LICENSE)
