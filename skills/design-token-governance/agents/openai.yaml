@@ -1,4 +1,0 @@
-interface:
-  display_name: "Design Token Governance"
-  short_description: "Govern design token changes with validation and rollback"
-  default_prompt: "Use $design-token-governance to manage token changes with previews and rollback rules."

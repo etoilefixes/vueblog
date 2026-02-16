@@ -1,4 +1,0 @@
-interface:
-  display_name: "API Contract Sync"
-  short_description: "Keep API contracts and types synchronized safely"
-  default_prompt: "Use $api-contract-sync to align API docs, types, and handlers with drift checks."

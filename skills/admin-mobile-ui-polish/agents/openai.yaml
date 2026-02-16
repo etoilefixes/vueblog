@@ -1,4 +1,0 @@
-interface:
-  display_name: "Admin Mobile UI Polish"
-  short_description: "Polish admin mobile UX flows, density, and reliability"
-  default_prompt: "Use $admin-mobile-ui-polish to improve admin mobile UX and complete key task flows."

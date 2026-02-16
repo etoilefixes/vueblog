@@ -38,10 +38,25 @@ export const blogPostSchema = z.object({
   contentSections: z.array(blogPostSectionSchema).max(80),
 })
 
+const socialIconCodeSchema = z.preprocess((value) => {
+  if (typeof value !== 'string') {
+    return value
+  }
+
+  const normalized = value.trim().toLowerCase()
+
+  if (normalized === 'blibli') {
+    return 'bilibili'
+  }
+
+  return normalized
+}, z.enum(['github', 'email', 'bilibili', 'wechat']))
+
 export const socialLinkSchema = z.object({
   label: z.string().trim().min(1).max(40),
   href: z.string().trim().min(1).max(300),
-  icon: z.enum(['github', 'email', 'bilibili', 'wechat']),
+  icon: socialIconCodeSchema.default('github'),
+  iconUrl: z.string().trim().max(300).optional(),
 })
 
 export const siteNavRouteNameValues = [
@@ -125,6 +140,8 @@ export const siteNavTabsSchema = z
   .default(defaultSiteNavTabs.map((item) => ({ ...item })))
 
 export const siteProfileSchema = z.object({
+  title: z.string().trim().min(1).max(120).default('mereiith Blog'),
+  favicon: z.string().trim().min(1).max(300).default('/favicon.ico'),
   name: z.string().trim().min(1).max(80),
   motto: z.string().trim().min(1).max(200),
   avatar: z.string().trim().min(1).max(300),

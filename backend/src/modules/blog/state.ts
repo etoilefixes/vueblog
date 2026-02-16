@@ -93,6 +93,8 @@ const createDefaultBootstrapState = (): BlogBootstrapPayload => {
 
   return {
     profile: {
+      title: 'mereiith Blog',
+      favicon: '/favicon.ico',
       name: 'mereiith',
       motto: 'life is strange',
       avatar: '/avatar.svg',
@@ -175,6 +177,49 @@ const sanitizeStringArray = (input: readonly string[], maxLength: number, allowN
     .map((item) => sanitizePlainText(item, { maxLength, allowNewlines }))
     .filter(Boolean)
 
+type SocialIconCode = BlogBootstrapPayload['profile']['socials'][number]['icon']
+
+const inferSocialIconCode = (input: {
+  icon: SocialIconCode
+  label: string
+  href: string
+  iconUrl?: string
+}): SocialIconCode => {
+  if (input.icon && input.icon !== 'github') {
+    return input.icon
+  }
+
+  const searchText = `${input.label} ${input.href} ${input.iconUrl ?? ''}`.toLowerCase()
+
+  if (searchText.includes('bilibili') || searchText.includes('blibli') || searchText.includes('b23.tv')) {
+    return 'bilibili'
+  }
+
+  if (
+    searchText.includes('wechat') ||
+    searchText.includes('weixin') ||
+    searchText.includes('wx.qq.com') ||
+    searchText.includes('weixin.qq.com')
+  ) {
+    return 'wechat'
+  }
+
+  if (
+    searchText.includes('mailto:') ||
+    searchText.includes('email') ||
+    searchText.includes('mail') ||
+    searchText.includes('@')
+  ) {
+    return 'email'
+  }
+
+  if (searchText.includes('github') || searchText.includes('github.com')) {
+    return 'github'
+  }
+
+  return input.icon || 'github'
+}
+
 const sanitizePost = (input: UpsertBlogPostInput): BlogPost => {
   const id = input.id?.trim() || normalizeId(input.title)
 
@@ -227,6 +272,14 @@ const sanitizeProfilePatch = (
   input: UpdateSiteProfileInput,
 ) => {
   return {
+    title:
+      input.title !== undefined
+        ? sanitizePlainText(input.title, { maxLength: 120, allowNewlines: false })
+        : current.title,
+    favicon:
+      input.favicon !== undefined
+        ? sanitizePlainText(input.favicon, { maxLength: 300, allowNewlines: false })
+        : current.favicon,
     name:
       input.name !== undefined
         ? sanitizePlainText(input.name, { maxLength: 80, allowNewlines: false })
@@ -242,11 +295,25 @@ const sanitizeProfilePatch = (
         : normalizeHomePageMaxPosts(current.homePageMaxPosts),
     socials:
       input.socials !== undefined
-        ? input.socials.map((item) => ({
-            label: sanitizePlainText(item.label, { maxLength: 40, allowNewlines: false }),
-            href: sanitizePlainText(item.href, { maxLength: 300, allowNewlines: false }),
-            icon: item.icon,
-          }))
+        ? input.socials.map((item) => {
+            const label = sanitizePlainText(item.label, { maxLength: 40, allowNewlines: false })
+            const href = sanitizePlainText(item.href, { maxLength: 300, allowNewlines: false })
+            const iconUrl = item.iconUrl
+              ? sanitizePlainText(item.iconUrl, { maxLength: 300, allowNewlines: false })
+              : undefined
+
+            return {
+              label,
+              href,
+              iconUrl,
+              icon: inferSocialIconCode({
+                icon: item.icon,
+                label,
+                href,
+                iconUrl,
+              }),
+            }
+          })
         : current.socials,
     navTabs:
       input.navTabs !== undefined

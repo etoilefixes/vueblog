@@ -6,10 +6,13 @@ import {
   Compass,
   FileText,
   FolderTree,
+  Github,
   History,
   House,
   LayoutGrid,
   Link2,
+  Mail,
+  MessageSquare,
   RefreshCw,
   Rss,
   Search,
@@ -17,6 +20,7 @@ import {
   SunMoon,
   Tag,
   TriangleAlert,
+  Tv,
   UserRound,
   X,
 } from 'lucide-vue-next'
@@ -31,8 +35,9 @@ import {
   type AppearanceMode,
 } from '@/services/appearance-runtime'
 import { collectKeywordMatchRanges, scoreWeightedSearch } from '@/services/light-search'
+import { normalizeSocialIconCode } from '@/services/social-icon'
 import { useBlogStore } from '@/stores/blog'
-import type { SiteNavIcon } from '@/types/blog'
+import type { SiteNavIcon, SocialLink } from '@/types/blog'
 import {
   buildNavItems,
   buildHighlightedHtml,
@@ -69,6 +74,13 @@ const navIconMap: Record<SiteNavIcon, Component> = {
   sparkles: Sparkles,
   compass: Compass,
   book: BookOpen,
+}
+
+const socialIconMap: Record<SocialLink['icon'], Component> = {
+  github: Github,
+  email: Mail,
+  bilibili: Tv,
+  wechat: MessageSquare,
 }
 
 const isPaletteOpen = ref(false)
@@ -133,6 +145,10 @@ const userProfile = computed(() => blogStore.profile)
 const userProfileStats = computed(() => blogStore.profileStats.slice(0, 3))
 const userPanelToggleLabel = computed(() => (isUserPanelOpen.value ? '关闭用户中心' : '打开用户中心'))
 const navigationItems = computed<NavItem[]>(() => buildNavItems(blogStore.profile.navTabs))
+const topNavAvatarSrc = computed(() => {
+  const avatar = userProfile.value.avatar?.trim()
+  return avatar || '/avatar.svg'
+})
 
 // 检测是否为超小屏幕（< 400px）
 const checkScreenSize = () => {
@@ -469,6 +485,10 @@ const getNavIcon = (icon: SiteNavIcon) => {
   return navIconMap[icon]
 }
 
+const getSocialIcon = (icon: SocialLink['icon'] | string) => {
+  return socialIconMap[normalizeSocialIconCode(icon)] ?? Github
+}
+
 watch(commandResults, (items) => {
   if (items.length === 0) {
     activeCommandIndex.value = 0
@@ -515,7 +535,7 @@ onBeforeUnmount(() => {
   <header class="top-nav">
     <div class="top-nav__inner">
       <RouterLink class="top-nav__avatar-link" :to="{ name: 'home' }" aria-label="返回首页">
-        <img class="top-nav__avatar" src="/avatar.svg" alt="站点头像" />
+        <img class="top-nav__avatar" :src="topNavAvatarSrc" :alt="`${userProfile.name || '站点'} 头像`" />
       </RouterLink>
 
       <nav
@@ -630,7 +650,7 @@ onBeforeUnmount(() => {
               aria-label="用户中心"
             >
               <header class="top-nav__user-head">
-                <img class="top-nav__user-avatar" :src="userProfile.avatar" alt="用户头像" />
+                <img class="top-nav__user-avatar" :src="topNavAvatarSrc" alt="用户头像" />
                 <div class="top-nav__user-meta">
                   <strong>{{ userProfile.name }}</strong>
                   <p>{{ userProfile.motto }}</p>
@@ -658,7 +678,20 @@ onBeforeUnmount(() => {
                     :rel="isExternalHttpLink(social.href) ? 'noreferrer noopener' : undefined"
                   >
                     <span>{{ social.label }}</span>
-                    <small>{{ social.icon }}</small>
+                    <span class="top-nav__user-social-icon">
+                      <img
+                        v-if="social.iconUrl"
+                        :src="social.iconUrl"
+                        :alt="`${social.label} 图标`"
+                        loading="lazy"
+                      />
+                      <component
+                        v-else
+                        :is="getSocialIcon(social.icon)"
+                        class="icon icon--xs icon--stroke-strong icon--react"
+                        aria-hidden="true"
+                      />
+                    </span>
                   </a>
                 </li>
                 <li v-if="visibleSocialLinks.length === 0" class="top-nav__user-social-empty">

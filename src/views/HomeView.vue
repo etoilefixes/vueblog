@@ -5,7 +5,9 @@ import type { Component, CSSProperties } from 'vue'
 
 import { formatRuntimeTemplate } from '@/services/runtime-template'
 import { highlightSearchKeyword } from '@/services/search-highlight'
+import { normalizeSocialIconCode } from '@/services/social-icon'
 import { useBlogStore } from '@/stores/blog'
+import type { SocialLink } from '@/types/blog'
 
 const blogStore = useBlogStore()
 const runtimeNow = ref(Date.now())
@@ -29,15 +31,15 @@ const getHighlightedText = (value: string) => {
   return highlightSearchKeyword(value, blogStore.keyword)
 }
 
-const socialIconMap: Record<'github' | 'email' | 'bilibili' | 'wechat', Component> = {
+const socialIconMap: Record<SocialLink['icon'], Component> = {
   github: Github,
   email: Mail,
   bilibili: Tv,
   wechat: MessageSquare,
 }
 
-const getSocialIcon = (icon: 'github' | 'email' | 'bilibili' | 'wechat') => {
-  return socialIconMap[icon]
+const getSocialIcon = (icon: SocialLink['icon'] | string) => {
+  return socialIconMap[normalizeSocialIconCode(icon)] ?? Github
 }
 
 const icpHref = computed(() => {
@@ -224,7 +226,15 @@ onBeforeUnmount(() => {
                 :target="isExternalUrl(social.href) ? '_blank' : undefined"
                 :rel="isExternalUrl(social.href) ? 'noreferrer' : undefined"
               >
+                <img
+                  v-if="social.iconUrl"
+                  class="profile-card__social-icon-image"
+                  :src="social.iconUrl"
+                  :alt="`${social.label} 图标`"
+                  loading="lazy"
+                />
                 <component
+                  v-else
                   :is="getSocialIcon(social.icon)"
                   class="icon icon--md icon--stroke-strong icon--react"
                   aria-hidden="true"

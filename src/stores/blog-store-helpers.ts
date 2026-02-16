@@ -6,6 +6,7 @@ import type {
   SiteProfile,
 } from '@/types/blog'
 import { createDefaultNavTabs } from '@/services/site-nav'
+import { normalizeSocialIconCode } from '@/services/social-icon'
 
 export const ALL_TAG_LABEL = '全部'
 export const DEFAULT_PAGE_SIZE = 5
@@ -74,6 +75,8 @@ export const getErrorMessage = (error: unknown) => {
 }
 
 export const createEmptyProfile = (): SiteProfile => ({
+  title: 'Blog',
+  favicon: '/favicon.ico',
   name: '',
   motto: '',
   avatar: '/avatar.svg',
@@ -81,6 +84,25 @@ export const createEmptyProfile = (): SiteProfile => ({
   socials: [],
   navTabs: createDefaultNavTabs(),
 })
+
+export const normalizeSiteProfile = (profile: SiteProfile): SiteProfile => {
+  const avatar = profile.avatar.trim() || '/avatar.svg'
+
+  return {
+    ...profile,
+    avatar,
+    socials: profile.socials.map((social) => {
+      const iconUrl = social.iconUrl?.trim()
+      const searchText = `${social.label} ${social.href} ${iconUrl ?? ''}`
+
+      return {
+        ...social,
+        icon: normalizeSocialIconCode(social.icon, searchText),
+        iconUrl: iconUrl || undefined,
+      }
+    }),
+  }
+}
 
 export const createEmptyFooterInfo = (): SiteFooterInfo => ({
   icp: '',

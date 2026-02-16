@@ -1,4 +1,0 @@
-interface:
-  display_name: "Backend Security Hardening"
-  short_description: "Harden backend auth, input, rate limits, and audit trails"
-  default_prompt: "Use $backend-security-hardening to enforce backend security baselines and checks."

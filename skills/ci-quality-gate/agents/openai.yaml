@@ -1,4 +1,0 @@
-interface:
-  display_name: "CI Quality Gate"
-  short_description: "Build repeatable CI gates for quality and release safety"
-  default_prompt: "Use $ci-quality-gate to set up quality gates for build, tests, and release checks."

@@ -15,6 +15,7 @@ import {
   isCommentVisible,
   normalizeCommentStatus,
   normalizeHomePageMaxPosts,
+  normalizeSiteProfile,
   readRecentSearchesFromStorage,
   sortPostsByDate,
 } from './blog-store-helpers'
@@ -90,6 +91,7 @@ export const useBlogStore = defineStore('blog', () => {
   }
 
   const applyBootstrapData = (payload: BlogBootstrapPayload) => {
+    const normalizedProfile = normalizeSiteProfile(payload.profile)
     const normalizedCommentsByPost = Object.fromEntries(
       Object.entries(payload.commentsByPost).map(([postId, items]) => [
         postId,
@@ -101,8 +103,8 @@ export const useBlogStore = defineStore('blog', () => {
     )
 
     posts.value = sortPostsByDate(payload.posts)
-    profile.value = payload.profile
-    pageSize.value = normalizeHomePageMaxPosts(payload.profile.homePageMaxPosts)
+    profile.value = normalizedProfile
+    pageSize.value = normalizeHomePageMaxPosts(normalizedProfile.homePageMaxPosts)
     currentPage.value = 1
     footerInfo.value = payload.footerInfo
     links.value = payload.links
@@ -649,7 +651,7 @@ export const useBlogStore = defineStore('blog', () => {
   }
 
   const updateProfile = async (input: UpdateSiteProfileInput) => {
-    const next = await blogApi.updateSiteProfile(input)
+    const next = normalizeSiteProfile(await blogApi.updateSiteProfile(input))
     profile.value = next
     pageSize.value = normalizeHomePageMaxPosts(next.homePageMaxPosts)
     currentPage.value = 1
